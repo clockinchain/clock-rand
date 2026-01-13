@@ -7,7 +7,7 @@ description = "Next-generation random number generation with blockchain-aware RN
 license = "MIT OR Apache-2.0"
 repository = "https://github.com/Olyntar-Labs/clock-rand"
 documentation = "https://docs.rs/clock-rand"
-keywords = ["rng", "random", "blockchain", "crypto", "prng", "cryptography", "security", "performance", "rust", "web3", "defi", "consensus", "fork-detection", "deterministic"]
+keywords = ["rng", "random", "blockchain", "crypto", "cryptography"]
 categories = ["algorithms", "cryptography", "no-std", "api-bindings", "science", "simulation"]
 
 [lib]
