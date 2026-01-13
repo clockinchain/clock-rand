@@ -1,6 +1,5 @@
 {
-    "rust-analyzer.checkOnSave.command": "clippy",
-    "rust-analyzer.checkOnSave.allTargets": false,
+    "rust-analyzer.checkOnSave": true,
     "rust-analyzer.cargo.allFeatures": true,
     "rust-analyzer.cargo.features": ["crypto_rng", "fast_rng"],
     "editor.formatOnSave": true,

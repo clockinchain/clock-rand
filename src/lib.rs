@@ -1,7 +1,10 @@
-//! clock-rand: Custom blockchain-aware RNG crate
+//! clock-rand: Next-generation random number generation
 //!
-//! Provides fast deterministic PRNGs, cryptographically secure RNGs,
-//! and custom blockchain-aware RNGs by Olyntar Labs, an Olyntar company.
+//! A production-ready Rust crate providing fast deterministic PRNGs,
+//! cryptographically secure RNGs, and blockchain-aware RNGs with automatic
+//! fork detection. Built for modern applications requiring both speed and security.
+//!
+//! By Olyntar Labs, an Olyntar company.
 
 #![cfg_attr(not(feature = "std"), no_std)]
 #![warn(missing_docs)]

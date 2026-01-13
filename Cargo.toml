@@ -3,7 +3,7 @@ name = "clock-rand"
 version = "1.0.0"
 edition = "2024"
 authors = ["Olyntar Labs <labs@olyntar.com>"]
-description = "Custom blockchain-aware RNG crate with fast and crypto-secure RNGs"
+description = "Next-generation random number generation with blockchain-aware RNGs, fork detection, and cryptographic security"
 license = "MIT OR Apache-2.0"
 repository = "https://github.com/Olyntar-Labs/clock-rand"
 documentation = "https://docs.rs/clock-rand"
@@ -31,7 +31,7 @@ fork_safe = []
 serde = ["dep:serde", "dep:serde_json", "serde/derive"]
 security = ["zeroize"]
 wasm = ["wasm-bindgen"]
-wasm_crypto = ["wasm", "js-sys", "web-sys"]
+wasm_crypto = ["wasm", "dep:js-sys", "dep:web-sys"]
 simd = []
 aes = []
 
