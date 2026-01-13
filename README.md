@@ -431,8 +431,7 @@ We take security seriously and will respond promptly.
 **Olyntar Labs** is a technology company specializing in blockchain infrastructure, cryptography, and secure systems. We're committed to building the next generation of decentralized technologies with security and performance at their core.
 
 - 🌐 **Website**: [olyntar.com](https://olyntar.com)
-- 🐦 **Twitter**: [@OlyntarLabs](https://twitter.com/OlyntarLabs)
-- 💼 **LinkedIn**: [Olyntar Labs](https://linkedin.com/company/olyntar-labs)
+- 🐦 **Twitter**: [@olyntar](https://twitter.com/olyntar)
 
 ## 📄 License
 
