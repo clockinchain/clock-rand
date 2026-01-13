@@ -1,0 +1,92 @@
+[package]
+name = "clock-rand"
+version = "1.0.0"
+edition = "2024"
+authors = ["Olyntar Labs <labs@olyntar.com>"]
+description = "Custom blockchain-aware RNG crate with fast and crypto-secure RNGs"
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/Olyntar-Labs/clock-rand"
+documentation = "https://docs.rs/clock-rand"
+keywords = ["rng", "random", "blockchain", "crypto", "prng"]
+categories = ["algorithms", "cryptography", "no-std"]
+
+[lib]
+name = "clock_rand"
+path = "src/lib.rs"
+
+[features]
+default = ["std", "fast_rng"]
+std = []
+no_std = []
+
+# RNG type features
+fast_rng = []
+crypto_rng = ["dep:blake3", "dep:chacha20", "dep:aes"]
+custom_rng = ["crypto_rng", "fast_rng"]
+distributions = []
+
+# Optional features
+thread_safe = ["std"]
+fork_safe = []
+serde = ["dep:serde", "dep:serde_json", "serde/derive"]
+security = ["zeroize"]
+wasm = ["wasm-bindgen"]
+wasm_crypto = ["wasm", "js-sys", "web-sys"]
+simd = []
+aes = []
+
+# Dependencies for crypto RNGs
+[dependencies]
+# Crypto primitives (only for crypto_rng feature)
+blake3 = { version = "1.8.3", optional = true }
+chacha20 = { version = "0.9.1", optional = true }
+aes = { version = "0.8.4", optional = true }
+
+# Optional dependencies
+serde = { version = "1.0.228", optional = true, features = ["derive"] }
+serde_json = { version = "1.0.149", optional = true }
+zeroize = { version = "1.8.2", optional = true, features = ["zeroize_derive"] }
+wasm-bindgen = { version = "0.2.106", optional = true }
+rand_core = "0.9.4"
+
+# WASM-specific dependencies for crypto
+[target.'cfg(target_arch = "wasm32")'.dependencies]
+js-sys = { version = "0.3", optional = true }
+web-sys = { version = "0.3", optional = true, features = [
+  "Crypto",
+  "Window",
+  "console",
+] }
+
+
+[dev-dependencies]
+criterion = { version = "0.8.1", features = ["html_reports"] }
+proptest = "1.9.0"
+quickcheck = "1.0.3"
+rand = "0.9.2"
+rand_pcg = "0.9.0"
+rand_xoshiro = "0.7.0"
+
+# Performance benchmarks
+[[bench]]
+name = "fast_rng"
+harness = false
+
+[[bench]]
+name = "crypto_rng"
+harness = false
+required-features = ["crypto_rng", "custom_rng"]
+
+[[bench]]
+name = "comparison"
+harness = false
+required-features = ["crypto_rng"]
+
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1
+
+[profile.dev]
+opt-level = 0
+debug = true

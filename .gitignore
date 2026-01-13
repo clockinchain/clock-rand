@@ -1,0 +1,49 @@
+# Rust
+target/
+Cargo.lock
+
+# IDEs
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+.idea/
+*.swp
+*.swo
+*~
+
+# VS Code
+.history/
+*.code-workspace
+
+# Cursor AI
+.cursor/
+
+# SpecStory
+.specstory/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.bak
+
+# Coverage reports
+coverage/
+*.profraw
+
+# Fuzz artifacts
+fuzz/artifacts/
+fuzz/corpus/
+
+# Local configuration
+.env
+.env.local
+
+# Documentation builds
+book/

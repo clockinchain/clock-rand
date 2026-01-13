@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Clock-Rand WASM Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .container {
+            margin: 20px 0;
+        }
+        button {
+            background: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background: #45a049;
+        }
+        button:disabled {
+            background: #cccccc;
+            cursor: not-allowed;
+        }
+        input, select {
+            padding: 8px;
+            margin: 5px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        pre {
+            background: #f5f5f5;
+            padding: 10px;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+        .result {
+            margin: 10px 0;
+            padding: 10px;
+            background: #e8f5e8;
+            border-radius: 4px;
+        }
+        .error {
+            background: #ffebee;
+            color: #c62828;
+        }
+    </style>
+</head>
+<body>
+    <h1>Clock-Rand WebAssembly Example</h1>
+
+    <div class="container">
+        <h2>RNG Information</h2>
+        <button onclick="showInfo()">Show RNG Info</button>
+        <pre id="info"></pre>
+    </div>
+
+    <div class="container">
+        <h2>Fast RNG (Xoshiro256+)</h2>
+        <input type="number" id="fastCount" value="10" min="1" max="1000">
+        <button onclick="generateFast()">Generate Fast Random Numbers</button>
+        <div id="fastResult" class="result"></div>
+    </div>
+
+    <div class="container">
+        <h2>Crypto RNG (ChaCha20)</h2>
+        <input type="number" id="cryptoCount" value="10" min="1" max="1000">
+        <button onclick="generateCrypto()">Generate Crypto Random Numbers</button>
+        <div id="cryptoResult" class="result"></div>
+    </div>
+
+    <div class="container">
+        <h2>Blockchain RNG (ChainSeed-X)</h2>
+        <input type="text" id="blockHash" value="0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef" size="64">
+        <input type="number" id="blockchainCount" value="10" min="1" max="1000">
+        <button onclick="generateBlockchain()">Generate Blockchain Random Numbers</button>
+        <div id="blockchainResult" class="result"></div>
+    </div>
+
+    <div class="container">
+        <h2>Performance Benchmark</h2>
+        <input type="number" id="benchmarkIterations" value="100000" min="1000" max="10000000">
+        <button onclick="runBenchmark()">Run Benchmark</button>
+        <div id="benchmarkResult" class="result"></div>
+    </div>
+
+    <script type="module">
+        import init, {
+            generate_fast_random,
+            generate_crypto_random,
+            generate_blockchain_random,
+            benchmark_fast_rng,
+            get_rng_info
+        } from './pkg/wasm_example.js';
+
+        async function run() {
+            await init();
+            console.log('Clock-Rand WASM example loaded');
+        }
+
+        window.showInfo = function() {
+            try {
+                const info = get_rng_info();
+                document.getElementById('info').textContent = info;
+            } catch (e) {
+                document.getElementById('info').textContent = 'Error: ' + e.message;
+            }
+        };
+
+        window.generateFast = function() {
+            try {
+                const count = parseInt(document.getElementById('fastCount').value);
+                const result = generate_fast_random(count);
+                document.getElementById('fastResult').textContent =
+                    `Generated ${count} random numbers: [${result.slice(0, 10).join(', ')}${count > 10 ? '...' : ''}]`;
+                document.getElementById('fastResult').className = 'result';
+            } catch (e) {
+                document.getElementById('fastResult').textContent = 'Error: ' + e.message;
+                document.getElementById('fastResult').className = 'result error';
+            }
+        };
+
+        window.generateCrypto = function() {
+            try {
+                const count = parseInt(document.getElementById('cryptoCount').value);
+                const result = generate_crypto_random(count);
+                document.getElementById('cryptoResult').textContent =
+                    `Generated ${count} crypto random numbers: [${result.slice(0, 10).join(', ')}${count > 10 ? '...' : ''}]`;
+                document.getElementById('cryptoResult').className = 'result';
+            } catch (e) {
+                document.getElementById('cryptoResult').textContent = 'Error: ' + e.message;
+                document.getElementById('cryptoResult').className = 'result error';
+            }
+        };
+
+        window.generateBlockchain = function() {
+            try {
+                const blockHash = document.getElementById('blockHash').value;
+                const count = parseInt(document.getElementById('blockchainCount').value);
+
+                // Convert hex string to bytes
+                const bytes = new Uint8Array(blockHash.match(/.{1,2}/g).map(byte => parseInt(byte, 16)));
+
+                const result = generate_blockchain_random(bytes, count);
+                document.getElementById('blockchainResult').textContent =
+                    `Generated ${count} blockchain random numbers: [${result.slice(0, 10).join(', ')}${count > 10 ? '...' : ''}]`;
+                document.getElementById('blockchainResult').className = 'result';
+            } catch (e) {
+                document.getElementById('blockchainResult').textContent = 'Error: ' + e.message;
+                document.getElementById('blockchainResult').className = 'result error';
+            }
+        };
+
+        window.runBenchmark = function() {
+            try {
+                const iterations = parseInt(document.getElementById('benchmarkIterations').value);
+                const time = benchmark_fast_rng(iterations);
+                const rate = (iterations / time) * 1000; // numbers per second
+                document.getElementById('benchmarkResult').textContent =
+                    `Generated ${iterations.toLocaleString()} numbers in ${time.toFixed(2)}ms\n` +
+                    `Rate: ${rate.toLocaleString()} numbers/second`;
+                document.getElementById('benchmarkResult').className = 'result';
+            } catch (e) {
+                document.getElementById('benchmarkResult').textContent = 'Error: ' + e.message;
+                document.getElementById('benchmarkResult').className = 'result error';
+            }
+        };
+
+        run();
+    </script>
+</body>
+</html>
