@@ -1,6 +1,6 @@
 [package]
 name = "clock-rand"
-version = "1.0.1"
+version = "1.0.2"
 edition = "2024"
 authors = ["Olyntar Labs <labs@olyntar.com>"]
 description = "Next-generation random number generation with blockchain-aware RNGs, fork detection, and cryptographic security"

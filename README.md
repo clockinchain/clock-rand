@@ -100,7 +100,7 @@ Add this to your `Cargo.toml`:
 
 ```toml
 [dependencies]
-clock-rand = "1.0.1"
+clock-rand = "1.0.2"
 ```
 
 Or for specific features:
@@ -155,7 +155,7 @@ if chain_rng.check_fork(&new_block_hash)? {
 
 ```toml
 # Core features (always enabled)
-clock-rand = "1.0.1"
+clock-rand = "1.0.2"
 
 # Optional features
 clock-rand = { version = "1.0", features = [
@@ -440,8 +440,6 @@ We take security seriously and will respond promptly.
 Licensed under either of:
 - **Apache License 2.0** ([LICENSE-APACHE](LICENSE-APACHE)) - *Permissive, patent protection*
 - **MIT License** ([LICENSE-MIT](LICENSE-MIT)) - *Simple and permissive*
-
-Choose the license that works best for your project!
 
 ## ⭐ **Show Your Support**
 
