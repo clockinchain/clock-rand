@@ -10,7 +10,6 @@
 [![License](https://img.shields.io/badge/license-MIT%20OR%20Apache--2.0-blue.svg)](https://github.com/Olyntar-Labs/clock-rand/blob/main/LICENSE)
 [![CI](https://github.com/Olyntar-Labs/clock-rand/workflows/CI/badge.svg)](https://github.com/Olyntar-Labs/clock-rand/actions)
 [![Code Coverage](https://codecov.io/gh/Olyntar-Labs/clock-rand/branch/main/graph/badge.svg)](https://codecov.io/gh/Olyntar-Labs/clock-rand)
-[![Security Audit](https://github.com/Olyntar-Labs/clock-rand/workflows/security/badge.svg)](https://github.com/Olyntar-Labs/clock-rand/actions)
 
 <br>
 
