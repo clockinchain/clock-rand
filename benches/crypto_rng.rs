@@ -5,10 +5,10 @@ use criterion::{Criterion, criterion_group, criterion_main};
 
 fn bench_chacha20(c: &mut Criterion) {
     let seed = Seed::from_bytes(b"benchmark_seed_1234567890123456".to_vec()).unwrap();
-    let mut rng = ChaCha20Rng::from_seed(seed);
+    let mut rng = ChaCha20Rng::new(&seed).unwrap();
 
     c.bench_function("chacha20_next_u32", |b| {
-        b.iter(|| std::hint::black_box(rng.next_u32()))
+        b.iter(|| std::hint::black_box(<ChaCha20Rng as Rng>::next_u32(&mut rng)))
     });
 
     c.bench_function("chacha20_next_u64", |b| {
@@ -17,21 +17,21 @@ fn bench_chacha20(c: &mut Criterion) {
 
     c.bench_function("chacha20_fill_bytes_64", |b| {
         let mut buf = [0u8; 64];
-        b.iter(|| rng.fill_bytes(std::hint::black_box(&mut buf)))
+        b.iter(|| <ChaCha20Rng as Rng>::fill_bytes(&mut rng, std::hint::black_box(&mut buf)))
     });
 
     c.bench_function("chacha20_fill_bytes_1024", |b| {
         let mut buf = [0u8; 1024];
-        b.iter(|| rng.fill_bytes(std::hint::black_box(&mut buf)))
+        b.iter(|| <ChaCha20Rng as Rng>::fill_bytes(&mut rng, std::hint::black_box(&mut buf)))
     });
 }
 
 fn bench_blake3_drbg(c: &mut Criterion) {
     let seed = Seed::from_bytes(b"benchmark_seed_1234567890123456".to_vec()).unwrap();
-    let mut rng = Blake3Drbg::from_seed(seed);
+    let mut rng = Blake3Drbg::new(&seed).unwrap();
 
     c.bench_function("blake3_drbg_next_u32", |b| {
-        b.iter(|| std::hint::black_box(rng.next_u32()))
+        b.iter(|| std::hint::black_box(<Blake3Drbg as Rng>::next_u32(&mut rng)))
     });
 
     c.bench_function("blake3_drbg_next_u64", |b| {
@@ -40,31 +40,31 @@ fn bench_blake3_drbg(c: &mut Criterion) {
 
     c.bench_function("blake3_drbg_fill_bytes_64", |b| {
         let mut buf = [0u8; 64];
-        b.iter(|| rng.fill_bytes(std::hint::black_box(&mut buf)))
+        b.iter(|| <Blake3Drbg as Rng>::fill_bytes(&mut rng, std::hint::black_box(&mut buf)))
     });
 
     c.bench_function("blake3_drbg_fill_bytes_1024", |b| {
         let mut buf = [0u8; 1024];
-        b.iter(|| rng.fill_bytes(std::hint::black_box(&mut buf)))
+        b.iter(|| <Blake3Drbg as Rng>::fill_bytes(&mut rng, std::hint::black_box(&mut buf)))
     });
 }
 
 #[cfg(feature = "aes")]
 fn bench_aes_ctr(c: &mut Criterion) {
     let seed = Seed::from_bytes(b"benchmark_seed_1234567890123456".to_vec()).unwrap();
-    let mut rng = AesCtrDrbg::from_seed(seed);
+    let mut rng = AesCtrRng::new(&seed).unwrap();
 
     c.bench_function("aes_ctr_next_u32", |b| {
-        b.iter(|| std::hint::black_box(rng.next_u32()))
+        b.iter(|| std::hint::black_box(<AesCtrRng as Rng>::next_u32(&mut rng)))
     });
 
     c.bench_function("aes_ctr_next_u64", |b| {
-        b.iter(|| std::hint::black_box(<AesCtrDrbg as Rng>::next_u64(&mut rng)))
+        b.iter(|| std::hint::black_box(<AesCtrRng as Rng>::next_u64(&mut rng)))
     });
 
     c.bench_function("aes_ctr_fill_bytes_64", |b| {
         let mut buf = [0u8; 64];
-        b.iter(|| rng.fill_bytes(std::hint::black_box(&mut buf)))
+        b.iter(|| <AesCtrRng as Rng>::fill_bytes(&mut rng, std::hint::black_box(&mut buf)))
     });
 }
 
@@ -76,7 +76,7 @@ fn bench_chainseed_x(c: &mut Criterion) {
         .unwrap();
 
     c.bench_function("chainseed_x_next_u32", |b| {
-        b.iter(|| std::hint::black_box(rng.next_u32()))
+        b.iter(|| std::hint::black_box(<ChainSeedX as Rng>::next_u32(&mut rng)))
     });
 
     c.bench_function("chainseed_x_next_u64", |b| {
@@ -85,18 +85,18 @@ fn bench_chainseed_x(c: &mut Criterion) {
 
     c.bench_function("chainseed_x_fill_bytes_64", |b| {
         let mut buf = [0u8; 64];
-        b.iter(|| rng.fill_bytes(std::hint::black_box(&mut buf)))
+        b.iter(|| <ChainSeedX as Rng>::fill_bytes(&mut rng, std::hint::black_box(&mut buf)))
     });
 }
 
 fn bench_entrocrypt(c: &mut Criterion) {
     let mut rng = EntroCrypt::builder()
-        .with_seed(Seed::from_bytes(b"benchmark_seed_1234567890123456".to_vec()).unwrap())
+        .with_chain_entropy(b"benchmark_seed_1234567890123456")
         .build()
         .unwrap();
 
     c.bench_function("entrocrypt_next_u32", |b| {
-        b.iter(|| std::hint::black_box(rng.next_u32()))
+        b.iter(|| std::hint::black_box(<EntroCrypt as Rng>::next_u32(&mut rng)))
     });
 
     c.bench_function("entrocrypt_next_u64", |b| {
@@ -105,7 +105,7 @@ fn bench_entrocrypt(c: &mut Criterion) {
 
     c.bench_function("entrocrypt_fill_bytes_64", |b| {
         let mut buf = [0u8; 64];
-        b.iter(|| rng.fill_bytes(std::hint::black_box(&mut buf)))
+        b.iter(|| <EntroCrypt as Rng>::fill_bytes(&mut rng, std::hint::black_box(&mut buf)))
     });
 }
 

@@ -45,5 +45,8 @@ fuzz/corpus/
 .env
 .env.local
 
+# Promotional materials (keep private)
+PROMOTION.md
+
 # Documentation builds
 book/
