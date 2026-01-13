@@ -3,9 +3,9 @@
 use clock_rand::*;
 use criterion::{Criterion, criterion_group, criterion_main};
 use rand::{RngCore, SeedableRng};
+use rand_chacha::ChaCha20Rng as RandChaCha20Rng;
 use rand_pcg::Pcg64 as RandPcg64;
 use rand_xoshiro::Xoshiro256Plus as RandXoshiro256Plus;
-use rand_chacha::ChaCha20Rng as RandChaCha20Rng;
 
 fn bench_fast_rng_comparison(c: &mut Criterion) {
     let mut clock_xoshiro = Xoshiro256Plus::new(12345);
@@ -76,8 +76,7 @@ fn bench_fill_bytes_comparison(c: &mut Criterion) {
 fn bench_crypto_rng_comparison(c: &mut Criterion) {
     let seed = Seed::from_bytes(b"benchmark_seed_1234567890123456".to_vec()).unwrap();
     let mut clock_chacha = ChaCha20Rng::new(&seed).unwrap();
-    let mut rand_chacha =
-        RandChaCha20Rng::from_seed(seed.as_ref()[..32].try_into().unwrap());
+    let mut rand_chacha = RandChaCha20Rng::from_seed(seed.as_ref()[..32].try_into().unwrap());
 
     let mut group = c.benchmark_group("crypto_rng_u64");
 
