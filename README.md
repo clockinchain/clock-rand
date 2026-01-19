@@ -2,15 +2,15 @@
 
 <div align="center">
 
-[![GitHub stars](https://img.shields.io/github/stars/Olyntar-Labs/clock-rand?style=social)](https://github.com/Olyntar-Labs/clock-rand/stargazers)
-[![GitHub Sponsors](https://img.shields.io/github/sponsors/olyntar-labs)](https://github.com/sponsors/olyntar-labs)
+[![GitHub stars](https://img.shields.io/github/stars/clockinchain/clock-rand?style=social)](https://github.com/clockinchain/clock-rand/stargazers)
+[![GitHub Sponsors](https://img.shields.io/github/sponsors/clockinchain)](https://github.com/sponsors/clockinchain)
 [![crates.io](https://img.shields.io/crates/v/clock-rand.svg)](https://crates.io/crates/clock-rand)
 [![crates.io downloads](https://img.shields.io/crates/d/clock-rand)](https://crates.io/crates/clock-rand)
 [![Documentation](https://docs.rs/clock-rand/badge.svg)](https://docs.rs/clock-rand)
-[![License](https://img.shields.io/badge/license-MIT%20OR%20Apache--2.0-blue.svg)](https://github.com/Olyntar-Labs/clock-rand/blob/main/LICENSE)
-<img src="https://github.com/Olyntar-Labs/clock-rand/workflows/CI/badge.svg" alt="CI">
-[![Code Coverage](https://codecov.io/gh/Olyntar-Labs/clock-rand/branch/main/graph/badge.svg)](https://codecov.io/gh/Olyntar-Labs/clock-rand)
-<img src="https://github.com/Olyntar-Labs/clock-rand/workflows/security/badge.svg" alt="Security Audit">
+[![License](https://img.shields.io/badge/license-MIT%20OR%20Apache--2.0-blue.svg)](https://github.com/clockinchain/clock-rand/blob/main/LICENSE)
+<img src="https://github.com/clockinchain/clock-rand/workflows/CI/badge.svg" alt="CI">
+[![Code Coverage](https://codecov.io/gh/clockinchain/clock-rand/branch/main/graph/badge.svg)](https://codecov.io/gh/clockinchain/clock-rand)
+<img src="https://github.com/clockinchain/clock-rand/workflows/security/badge.svg" alt="Security Audit">
 
 <br>
 
@@ -30,24 +30,28 @@
 **A comprehensive RNG library designed for modern Rust applications requiring both performance and security.**
 
 ### 🔥 **Battle-Tested Performance**
+
 - **2GB/s throughput** for fast RNGs (Xoshiro256+, PCG64)
 - **654MB/s sustained** for cryptographic RNGs (ChaCha20, Blake3-DRBG)
 - **Zero-allocation designs** with SIMD acceleration
 - **Industry-leading benchmarks** with statistical confidence
 
 ### 🔐 **Enterprise Security**
+
 - **FIPS-compliant algorithms** with formal security audits
 - **Memory zeroization** to prevent cold boot attacks
 - **Fork detection** for blockchain consensus integrity
 - **Constant-time operations** resistant to timing attacks
 
 ### 🚀 **Developer Experience**
+
 - **Drop-in replacement** for `rand` crate ecosystem
 - **Rich feature flags** for minimal dependency trees
 - **Comprehensive documentation** with real-world examples
 - **Cross-platform support** (Linux, macOS, Windows, WASM, embedded)
 
 ### 🏆 **Production Ready**
+
 - **Used by leading blockchain projects** worldwide
 - **Zero security vulnerabilities** in production deployments
 - **Active maintenance** with regular security updates
@@ -75,21 +79,25 @@
 ## 🎯 **Perfect For**
 
 **Blockchain & DeFi Applications:**
+
 - Consensus randomness with fork detection
 - VRF (Verifiable Random Functions) implementation
 - Secure validator selection and leader election
 
 **Security-Critical Systems:**
+
 - Cryptographic key generation
 - Nonce creation for digital signatures
 - Secure token generation
 
 **High-Performance Computing:**
+
 - Monte Carlo simulations
 - Gaming and entertainment
 - Scientific computing applications
 
 **WebAssembly Applications:**
+
 - Browser-based cryptography
 - Client-side random number generation
 - Interactive demos and educational tools
@@ -272,6 +280,7 @@ let value: u64 = rng.gen(); // Same API!
 ## 🎮 Examples
 
 ### Basic Usage
+
 ```rust
 use clock_rand::{Rng, Xoshiro256Plus};
 
@@ -288,6 +297,7 @@ rng.fill_bytes(&mut buffer);
 ```
 
 ### Cryptographic Security
+
 ```rust
 use clock_rand::{Rng, ChaCha20Rng, Seed};
 
@@ -303,6 +313,7 @@ let nonce = rng.next_u64();
 ```
 
 ### Blockchain Applications
+
 ```rust
 use clock_rand::{ChainSeedX, Seed};
 
@@ -323,6 +334,7 @@ if rng.check_fork(&new_block_hash)? {
 ```
 
 ### Thread-Safe Usage
+
 ```rust
 use clock_rand::{thread_safe::ThreadSafeRng, Xoshiro256Plus};
 use std::sync::Arc;
@@ -339,6 +351,7 @@ std::thread::spawn(move || {
 ```
 
 ### WASM Support
+
 ```rust
 use clock_rand::{Rng, Xoshiro256Plus};
 
@@ -352,6 +365,7 @@ async fn web_crypto_rng() -> Result<WasmCryptoRng, JsValue> {
 ```
 
 📁 **Complete Examples**: [examples/](examples/)
+
 - `basic_usage.rs` - Getting started
 - `blockchain_seeding.rs` - Block hash seeding
 - `fork_detection.rs` - Fork handling
@@ -362,6 +376,7 @@ async fn web_crypto_rng() -> Result<WasmCryptoRng, JsValue> {
 ## 📚 Documentation
 
 ### 📖 Guides & References
+
 - **[📚 API Documentation](https://docs.rs/clock-rand)** - Complete API reference
 - **[🏗️ Architecture Guide](docs/ARCHITECTURE.md)** - System design and internals
 - **[🔒 Security Guide](docs/SECURITY.md)** - Security considerations and best practices
@@ -386,6 +401,7 @@ use clock_rand::{Seed, RngExt, utils::*};
 We ❤️ contributions! Help make clock-rand even better.
 
 ### 🚀 Quick Start
+
 1. 📖 Read our [Contributing Guide](CONTRIBUTING.md)
 2. 🍴 Fork and clone the repository
 3. 🌿 Create a feature branch: `git checkout -b feature/amazing-feature`
@@ -394,6 +410,7 @@ We ❤️ contributions! Help make clock-rand even better.
 6. 🔄 Push and create a PR
 
 ### 🏷️ Contribution Types
+
 - 🐛 **Bug fixes** - Fix issues and vulnerabilities
 - ✨ **Features** - Add new functionality
 - 📚 **Documentation** - Improve docs and examples
@@ -402,6 +419,7 @@ We ❤️ contributions! Help make clock-rand even better.
 - 🔒 **Security** - Security enhancements
 
 ### 📊 Development Workflow
+
 ```
 ┌─────────────┐    ┌─────────────┐    ┌─────────────┐
 │   feature   │ -> │ pull request │ -> │   review    │
@@ -415,20 +433,21 @@ We ❤️ contributions! Help make clock-rand even better.
 
 Found a bug? Have a feature request?
 
-- 🐛 **Bug Reports**: [Open an issue](https://github.com/Olyntar-Labs/clock-rand/issues/new?template=bug_report.md)
-- 💡 **Feature Requests**: [Open an issue](https://github.com/Olyntar-Labs/clock-rand/issues/new)
-- 💬 **Discussions**: [GitHub Discussions](https://github.com/Olyntar-Labs/clock-rand/discussions)
+- 🐛 **Bug Reports**: [Open an issue](https://github.com/clockinchain/clock-rand/issues/new?template=bug_report.md)
+- 💡 **Feature Requests**: [Open an issue](https://github.com/clockinchain/clock-rand/issues/new)
+- 💬 **Discussions**: [GitHub Discussions](https://github.com/clockinchain/clock-rand/discussions)
 
 ### 🔒 Security Issues
+
 **🚨 Never report security vulnerabilities publicly!**
 
-Email: [security@olyntar.com](mailto:security@olyntar.com)
+Email: [security@clockinchain.com](mailto:security@clockinchain.com)
 
 We take security seriously and will respond promptly.
 
-## 🏢 About Olyntar Labs
+## 🏢 About ClockInChain
 
-**Olyntar Labs** is a technology company specializing in blockchain infrastructure, cryptography, and secure systems. We're committed to building the next generation of decentralized technologies with security and performance at their core.
+**ClockInChain** is a technology company specializing in blockchain infrastructure, cryptography, and secure systems. We're committed to building the next generation of decentralized technologies with security and performance at their core.
 
 - 🌐 **Website**: [olyntar.com](https://olyntar.com)
 - 🐦 **Twitter**: [@olyntar](https://twitter.com/olyntar)
@@ -438,6 +457,7 @@ We take security seriously and will respond promptly.
 **Dual-licensed** for maximum compatibility:
 
 Licensed under either of:
+
 - **Apache License 2.0** ([LICENSE-APACHE](LICENSE-APACHE)) - *Permissive, patent protection*
 - **MIT License** ([LICENSE-MIT](LICENSE-MIT)) - *Simple and permissive*
 
@@ -450,15 +470,15 @@ If **clock-rand** helps your project, consider giving us a ⭐ on GitHub! Your s
 - 📚 **Improve documentation** and add new features
 - 🌍 **Grow the ecosystem** of secure Rust applications
 
-[![GitHub stars](https://img.shields.io/github/stars/Olyntar-Labs/clock-rand?style=social)](https://github.com/Olyntar-Labs/clock-rand/stargazers)
-[![GitHub forks](https://img.shields.io/github/forks/Olyntar-Labs/clock-rand?style=social)](https://github.com/Olyntar-Labs/clock-rand/fork)
+[![GitHub stars](https://img.shields.io/github/stars/clockinchain/clock-rand?style=social)](https://github.com/clockinchain/clock-rand/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/clockinchain/clock-rand?style=social)](https://github.com/clockinchain/clock-rand/fork)
 
 ---
 
 <div align="center">
 
-**Made with ❤️ by [Olyntar Labs](https://olyntar.com)**
+**Made with ❤️ by [ClockInChain](https://clockinchain.com)**
 
-[📦 Install](#installation) • [📚 Docs](https://docs.rs/clock-rand) • [🐛 Report Bug](https://github.com/Olyntar-Labs/clock-rand/issues) • [💡 Request Feature](https://github.com/Olyntar-Labs/clock-rand/issues) • ⭐ [Star on GitHub](https://github.com/Olyntar-Labs/clock-rand)
+[📦 Install](#installation) • [📚 Docs](https://docs.rs/clock-rand) • [🐛 Report Bug](https://github.com/clockinchain/clock-rand/issues) • [💡 Request Feature](https://github.com/clockinchain/clock-rand/issues) • ⭐ [Star on GitHub](https://github.com/clockinchain/clock-rand)
 
 </div>

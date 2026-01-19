@@ -7,7 +7,7 @@
 ./setup-repo.sh
 
 # Add GitHub remote
-git remote add origin https://github.com/Olyntar-Labs/clock-rand.git
+git remote add origin https://github.com/clockinchain/clock-rand.git
 
 # Push initial branches
 git push -u origin main develop

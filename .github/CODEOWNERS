@@ -2,11 +2,11 @@
 # https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
 
 # Global owners - all files
-* @Olyntar-Labs/maintainers
+* @clockinchain/maintainers
 
 # Crypto-specific code requires security review
-src/crypto/ @Olyntar-Labs/security-reviewers
-src/custom/ @Olyntar-Labs/security-reviewers
+src/crypto/ @clockinchain/security-reviewers
+src/custom/ @clockinchain/security-reviewers
 
 # CI/CD and release configuration
-.github/ @Olyntar-Labs/maintainers
+.github/ @clockinchain/maintainers

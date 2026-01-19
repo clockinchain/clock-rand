@@ -5,8 +5,9 @@ Thank you for your interest in contributing to clock-rand! We welcome contributi
 ## Development Setup
 
 1. **Clone the repository**
+
    ```bash
-   git clone https://github.com/Olyntar-Labs/clock-rand.git
+   git clone https://github.com/clockinchain/clock-rand.git
    cd clock-rand
    ```
 
@@ -14,11 +15,13 @@ Thank you for your interest in contributing to clock-rand! We welcome contributi
    - Install the latest stable Rust toolchain from [rustup.rs](https://rustup.rs/)
 
 3. **Run tests**
+
    ```bash
    cargo test --all-features
    ```
 
 4. **Check code quality**
+
    ```bash
    cargo clippy --all-features -- -D warnings
    cargo fmt -- --check
@@ -35,6 +38,7 @@ Thank you for your interest in contributing to clock-rand! We welcome contributi
 ## Commit Messages
 
 Use conventional commit format:
+
 - `feat:` for new features
 - `fix:` for bug fixes
 - `docs:` for documentation changes
@@ -56,7 +60,7 @@ Example: `feat: add ChaCha20Rng implementation`
 
 - Cryptographic code must be thoroughly reviewed
 - Any changes to RNG implementations need extensive testing
-- Report security issues privately to [security@olyntar.com](mailto:security@olyntar.com)
+- Report security issues privately to [security@clockinchain.com](mailto:security@clockinchain.com)
 
 ## License
 
