@@ -1,6 +1,6 @@
 [package]
 name = "clock-rand"
-version = "1.0.2"
+version = "1.0.3"
 edition = "2024"
 authors = ["ClockInChain <labs@clockinchain.com>"]
 description = "Next-generation random number generation with blockchain-aware RNGs, fork detection, and cryptographic security"
